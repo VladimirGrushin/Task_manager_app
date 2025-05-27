@@ -1,0 +1,18 @@
+<%= form_with(model: task) do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, "Название", class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, "Описание", class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :status, "Статус", class: "form-label" %>
+    <%= form.select :status, ["Новая", "В работе", "Завершена"], {}, class: "form-select" %>
+  </div>
+
+  <%= form.submit "Сохранить", class: "btn btn-primary" %>
+<% end %>
