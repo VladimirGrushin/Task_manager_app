@@ -8,8 +8,8 @@
   "scripts": {
   "build":    "parcel build app/javascript/application.js --dist-dir app/assets/builds/",
   "build:css":"tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-  "watch":    "parcel watch app/javascript/application.js --dist-dir app/assets/builds",
-  "watch:css":"npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch"
+  "watch": "parcel watch app/javascript/application.js --dist-dir app/assets/builds --port 5101",
+  "watch:css": "npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch"
   },
 
   "dependencies": {
@@ -19,3 +19,4 @@
     "@tailwindcss/cli": "^4.1.7"
   }
 }
+

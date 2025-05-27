@@ -19,5 +19,7 @@ npm install
 Run the server and client part:
 
 '''bash
+gem install foreman
+bundle exec rake db:create
 foreman start -f Procfile.dev
 '''
