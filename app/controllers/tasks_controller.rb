@@ -4,14 +4,22 @@ class TasksController < ApplicationController
   after_action :verify_authorized, except: [ :index, :new, :create ]
 
   def index
-    @tasks = current_user.tasks.includes(:category)
+    @tasks = policy_scope(Task).includes(:category)
+
     if params[:status].present? && Task.statuses.key?(params[:status])
       @tasks = @tasks.where(status: params[:status])
     end
+
     respond_to do |format|
-    format.html
-    format.json { render json: @tasks, include: :category }
+      format.html
+      format.json { render json: @tasks, include: :category }
+    end
   end
+
+  def admin_index
+    authorize Task, :admin_index?
+    @tasks = policy_scope(Task).includes(:user, :category)
+    render :index
   end
 
   def show
@@ -28,6 +36,8 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
+    authorize @task
+
     respond_to do |format|
       if @task.save
         format.html { redirect_to tasks_path, notice: "Задача успешно создана." }
@@ -41,6 +51,7 @@ class TasksController < ApplicationController
 
   def update
     authorize @task
+
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to tasks_path, notice: "Задача успешно обновлена." }
@@ -55,6 +66,7 @@ class TasksController < ApplicationController
   def destroy
     authorize @task
     @task.destroy
+
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Задача успешно удалена." }
       format.json { head :no_content }
@@ -64,7 +76,8 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
+    authorize @task
   end
 
   def task_params
