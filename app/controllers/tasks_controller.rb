@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_admin!, only: [ :admin_index ]
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
   after_action :verify_authorized, except: [ :index, :new, :create ]
 
@@ -87,5 +88,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :description, :status, :due_date, :category_id)
+  end
+
+  def authorize_admin!
+    redirect_to root_path, alert: "Доступ запрещён" unless current_user.admin?
   end
 end
