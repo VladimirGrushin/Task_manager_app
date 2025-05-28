@@ -6,7 +6,7 @@ class Task < ApplicationRecord
     pending: "pending",
     in_progress: "in_progress",
     completed: "completed"
-  }, default: :pending  # Явное указание default значения
+  }, default: :pending
 
   validates :title, presence: true
   validates :status, inclusion: { in: statuses.keys }

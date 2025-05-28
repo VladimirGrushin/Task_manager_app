@@ -28,10 +28,13 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
+    @categories = Category.all.order(:name)
   end
 
   def edit
+    @task = Task.find(params[:id])
     authorize @task
+    @categories = Category.all.order(:name)
   end
 
   def create
@@ -64,12 +67,14 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = Task.find(params[:id])
     authorize @task
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Задача успешно удалена." }
+      format.html { redirect_to tasks_url, notice: "Задача успешно удалена.", status: :see_other }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 
