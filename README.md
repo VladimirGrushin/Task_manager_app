@@ -21,5 +21,6 @@ Run the server and client part:
 '''bash
 gem install foreman
 bundle exec rake db:create
+rails db:migrate db:seed
 foreman start -f Procfile.dev
 '''

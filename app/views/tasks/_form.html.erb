@@ -11,7 +11,7 @@
 
   <div class="mb-3">
     <%= form.label :status, "Статус", class: "form-label" %>
-    <%= form.select :status, ["Новая", "В работе", "Завершена"], {}, class: "form-select" %>
+    <%= form.select :status, ["pending", "in_progress", "completed"], {}, class: "form-select" %>
   </div>
 
   <%= form.submit "Сохранить", class: "btn btn-primary" %>
