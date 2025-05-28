@@ -67,3 +67,5 @@ end
 
 
 gem "foreman", "~> 0.88.1"
+
+gem "pundit", "~> 2.5"
