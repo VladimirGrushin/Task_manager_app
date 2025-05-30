@@ -1,6 +1,8 @@
+require("./index.css");
 var $7Tu7o$hotwiredturborails = require("@hotwired/turbo-rails");
 var $7Tu7o$hotwiredstimulus = require("@hotwired/stimulus");
 var $7Tu7o$hotwiredstimuluswebpackhelpers = require("@hotwired/stimulus-webpack-helpers");
+
 
 
 

@@ -81,7 +81,7 @@
   },
   "scripts": {
     "prepare-assets": "powershell -Command \"if (!(Test-Path -Path 'public/assets')) { New-Item -ItemType Directory -Path 'public/assets' }\"",
-    "build": "set NODE_OPTIONS=--no-experimental-fetch&& parcel build --no-cache",
+    "build": "npm run build:css && npx parcel build app/javascript/application.js --no-cache",
     "build:css": "npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -94,6 +94,12 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VladimirGrushin/Task_manager_app/issues"
+  },
+  "targets": {
+    "default": {
+      "distDir": "public/assets",
+      "publicUrl": "/assets"
+    }
   },
   "homepage": "https://github.com/VladimirGrushin/Task_manager_app#readme"
 }

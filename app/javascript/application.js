@@ -1,3 +1,4 @@
+import "../assets/builds/application.css";
 import { Turbo } from "@hotwired/turbo-rails"
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
