@@ -16,4 +16,13 @@ RSpec.describe Task, type: :model do
     task = Task.new(title: nil)
     expect(task).to_not be_valid
   end
+
+it 'raises an error when given an invalid status' do
+  user = User.create!(email: 'another@example.com', password: 'password')
+  expect {
+    Task.new(title: 'Task', status: 'unknown', user: user)
+  }.to raise_error(ArgumentError, /is not a valid status/)
+end
+
+
 end
