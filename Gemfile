@@ -65,6 +65,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 
 gem "foreman", "~> 0.88.1"
 
