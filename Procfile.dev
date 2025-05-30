@@ -1,3 +1,3 @@
-web:  bundle exec rails server
-js:   npm run watch
-css:  npm run watch:css
+web: bundle exec rails server
+js: yarn parcel watch app/javascript/application.js --dist-dir app/assets/builds
+css: npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch
