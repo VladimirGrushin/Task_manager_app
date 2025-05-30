@@ -40,5 +40,18 @@ it 'has a default status of pending' do
   expect(task.status).to eq('pending')
 end
 
+it 'is valid with a category' do
+  user = User.create!(email: 'test5@example.com', password: 'password')
+  category = Category.create!(name: 'Work')
+  task = Task.new(
+    title: 'Categorized Task',
+    description: 'A task with category',
+    status: 'pending',
+    user: user,
+    category: category
+  )
+  expect(task).to be_valid
+end
+
 
 end
