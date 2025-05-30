@@ -24,5 +24,10 @@ it 'raises an error when given an invalid status' do
   }.to raise_error(ArgumentError, /is not a valid status/)
 end
 
+it 'is not valid without a user' do
+  task = Task.new(title: 'Orphan Task', status: 'pending', user: nil)
+  expect(task).not_to be_valid
+  expect(task.errors[:user]).to include("must exist")
+end
 
 end
