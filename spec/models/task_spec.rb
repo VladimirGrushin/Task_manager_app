@@ -53,5 +53,14 @@ it 'is valid with a category' do
   expect(task).to be_valid
 end
 
+it 'is not valid without a user' do
+  task = Task.new(
+    title: 'No User Task',
+    description: 'No user assigned',
+    status: 'pending'
+  )
+  expect(task).to_not be_valid
+end
+
 
 end
