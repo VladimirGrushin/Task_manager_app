@@ -80,7 +80,8 @@
     "tailwindcss": "^4.1.8"
   },
   "scripts": {
-    "build": "parcel build app/javascript/application.js --dist-dir app/assets/builds",
+    "prepare-assets": "powershell -Command \"if (!(Test-Path -Path 'public/assets')) { New-Item -ItemType Directory -Path 'public/assets' }\"",
+    "build": "set NODE_OPTIONS=--no-experimental-fetch&& parcel build --no-cache",
     "build:css": "npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
