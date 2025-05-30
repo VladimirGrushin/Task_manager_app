@@ -62,5 +62,16 @@ it 'is not valid without a user' do
   expect(task).to_not be_valid
 end
 
+it 'is valid without a category' do
+  user = User.create!(email: 'valid@example.com', password: 'password')
+  task = Task.new(
+    title: 'No Category Task',
+    description: 'This task has no category',
+    status: 'pending',
+    user: user
+  )
+  expect(task).to be_valid
+end
+
 
 end
