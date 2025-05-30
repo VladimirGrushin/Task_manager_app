@@ -30,4 +30,10 @@ it 'is not valid without a user' do
   expect(task.errors[:user]).to include("must exist")
 end
 
+it 'has a default status of pending' do
+  user = User.create!(email: 'default_status@example.com', password: 'password')
+  task = Task.create!(title: 'Default Status Task', user: user)
+  expect(task.status).to eq('pending')
+end
+
 end
