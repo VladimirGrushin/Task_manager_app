@@ -31,9 +31,14 @@ it 'is not valid without a user' do
 end
 
 it 'has a default status of pending' do
-  user = User.create!(email: 'default_status@example.com', password: 'password')
-  task = Task.create!(title: 'Default Status Task', user: user)
+  user = User.create!(email: 'test4@example.com', password: 'password')
+  task = Task.create!(
+    title: 'Default Status Task',
+    description: 'Task without explicit status',
+    user: user
+  )
   expect(task.status).to eq('pending')
 end
+
 
 end
