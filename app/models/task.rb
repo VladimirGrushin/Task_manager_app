@@ -9,5 +9,6 @@ class Task < ApplicationRecord
   }, default: :pending
 
   validates :title, presence: true
+  validates :description, presence: true
   validates :status, inclusion: { in: statuses.keys }
 end
