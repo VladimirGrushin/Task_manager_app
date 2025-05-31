@@ -2,6 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
@@ -9,6 +10,7 @@ development:
   username: <%= ENV["TASK_MANAGER_DEV_DATABASE_USERNAME"] %>
   password: <%= ENV["TASK_MANAGER_DEV_DATABASE_PASSWORD"] %>
   host: localhost
+  port: 5432
 
 test:
   <<: *default
@@ -16,7 +18,8 @@ test:
   username: <%= ENV["TASK_MANAGER_DEV_DATABASE_USERNAME"] %>
   password: <%= ENV["TASK_MANAGER_DEV_DATABASE_PASSWORD"] %>
   host: localhost
+  port: 5432
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV['DATABASE_URL'] %>
